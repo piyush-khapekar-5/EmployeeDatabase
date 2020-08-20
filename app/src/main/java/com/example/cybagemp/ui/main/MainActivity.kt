@@ -53,7 +53,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
     }
 
     /**
-        Navigates to AddEmployeeActivity
+    Navigates to AddEmployeeActivity
      */
     private fun showAddEmp() {
         startActivity(Intent(applicationContext, AddEmployeeActivity::class.java))
@@ -71,31 +71,32 @@ class MainActivity : BaseActivity<MainViewModel>() {
                     else -> false
                 }
             }
-            rvEmployees.apply {
-                layoutManager = linearLayoutManager
-                adapter = employeeAdapter
-            }
-
-            employeeAdapter.setOnItemClickListener(object : EmpAdapter.ClickListener {
-                override fun onItemClick(v: View, id: String) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Clicked: ${id}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    val intent = Intent(applicationContext, EmpDetailsActivity::class.java)
-                    intent.putExtra("Employee_ID", id)
-                    startActivity(intent)
-                }
-            })
-            // Added divider to recucvler view
-            rvEmployees.addItemDecoration(
-                DividerItemDecoration(
-                    application,
-                    DividerItemDecoration.VERTICAL
-                )
-            )
         }
+        rvEmployees.apply {
+            layoutManager = linearLayoutManager
+            adapter = employeeAdapter
+        }
+
+        employeeAdapter.setOnItemClickListener(object : EmpAdapter.ClickListener {
+            override fun onItemClick(v: View, id: String) {
+                Toast.makeText(
+                    this@MainActivity,
+                    "Clicked: ${id}",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                val intent = Intent(applicationContext, EmpDetailsActivity::class.java)
+                intent.putExtra("Employee_ID", id)
+                startActivity(intent)
+            }
+        })
+        // Added divider to recucvler view
+        rvEmployees.addItemDecoration(
+            DividerItemDecoration(
+                application,
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
+
 }
